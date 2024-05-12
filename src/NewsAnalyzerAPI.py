@@ -26,7 +26,7 @@ class LLMConnector:
                 {"role": "user", "content": text},
             ]
         )
-        print(response.choices[0].message.content)
+        return response.choices[0].message.content
 
 class NewsAnalyzer:
     language = 'Portuguese'
@@ -50,9 +50,15 @@ class NewsAnalyzer:
             self.llm_connector.process_text(article.text + "\n\n" + self.event_components[c])
             print("--------------\n\n")
 
+    def identify_component(self, article, component):
+        # Method to identify the specified component of the news
+        return self.llm_connector.process_text((article.text + '\n\n'+ self.event_components[component]))
+
+    # -> manter as funções abaixo ou só esta de cima?
+
     def identify_what(self, article):
         # Method to identify the "what" component of the news
-        self.llm_connector.process_text((article.text + '\n\n'+ self.event_components['what']))
+        return self.llm_connector.process_text((article.text + '\n\n'+ self.event_components['what']))
 
     def identify_where(self, article):
         # Method to identify the "where" component of the news
