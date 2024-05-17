@@ -29,7 +29,7 @@ class LLMConnector:
         return response.choices[0].message.content
 
 class NewsAnalyzer:
-    language = 'Portuguese'
+    language = 'English'
     event_components = {}
     event_components['what'] = 'What events occur in the text? List and enumerate (in '+language+'):'
     event_components['where'] = 'Where (locations and places) did the events described in the text occur? Output format is [country,state,city]. List and enumerate (in '+language+')::'
