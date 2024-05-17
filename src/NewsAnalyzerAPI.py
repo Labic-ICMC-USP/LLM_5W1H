@@ -62,20 +62,20 @@ class NewsAnalyzer:
 
     def identify_where(self, article):
         # Method to identify the "where" component of the news
-        self.llm_connector.process_text((article.text + '\n\n'+ self.event_components['where']))
+        return self.llm_connector.process_text((article.text + '\n\n'+ self.event_components['where']))
 
     def identify_when(self, article):
         # Method to identify the "when" component of the news
-        self.llm_connector.process_text((article.text + '\n\n'+ self.event_components['when']))
+        return self.llm_connector.process_text((article.text + '\n\n'+ self.event_components['when']))
 
     def identify_who(self, article):
         # Method to identify the "who" component of the news
-        self.llm_connector.process_text((article.text + '\n\n'+ self.event_components['who']))
+        return self.llm_connector.process_text((article.text + '\n\n'+ self.event_components['who']))
 
     def identify_why(self, article):
         # Method to identify the "why" component of the news
-        self.llm_connector.process_text((article.text + '\n\n'+ self.event_components['why']))
+        return self.llm_connector.process_text((article.text + '\n\n'+ self.event_components['why']))
 
     def identify_how(self, article):
         # Method to identify the "how" component of the news
-        self.llm_connector.process_text((article.text + '\n\n'+ self.event_components['how']))
+        return self.llm_connector.process_text((article.text + '\n\n'+ self.event_components['how']))
