@@ -15,13 +15,13 @@ class LLMConnector:
 
         self.client = OpenAI(
             base_url = self.endpoint,
-            api_key = "dummykey",
+            api_key = "lm-studio",
         )
 
     def process_text(self, text):
         # Method to interact with the LLM endpoint for text processing
         response = self.client.chat.completions.create(
-            model = "openchat_3.5",
+            model = "lmstudio-ai/gemma-2b-it-GGUF",
             messages = [
                 {"role": "user", "content": text},
             ]
@@ -47,7 +47,7 @@ class NewsAnalyzer:
           print(f"Article title: {article.title}\n")
           for c in self.event_components:
             print(c)
-            self.llm_connector.process_text(article.text + "\n\n" + self.event_components[c])
+            print(self.llm_connector.process_text(article.text + "\n\n" + self.event_components[c]))
             print("--------------\n\n")
 
     def identify_component(self, article, component):
