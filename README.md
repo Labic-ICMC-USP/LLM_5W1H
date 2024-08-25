@@ -2,22 +2,26 @@
 This project is a LLM-based System for extracting main events from news articles.
 
 ## Step-by-Step Tutorial on how to use News Analyzer API
-1. Ensure you have OpenAI Python library installed by running the following command in the Python shell:
+1. Ensure you have OpenAI's Python library installed by running the following command in the Python shell.
         
         pip install openai 
 
-2. Initialize News Analyzer API.
+2. Import News Analyzer API.
 
 ```python
 from src.NewsAnalyzerAPI import NewsArticle
 from src.NewsAnalyzerAPI import LLMConnector
 from src.NewsAnalyzerAPI import NewsAnalyzer
+```
 
+
+3. Instantiate your LLMConnector and NewsAnalyzer objects.
+```python
 connector = LLMConnector("your_llm_endpoint")
 analyzer = NewsAnalyzer(connector)
 ```
 
-3. Give an example article to the analyzer, with the following parameters: title, description, text, date, url.
+4. Give an example article to the analyzer, with the following parameters: title, description, text, date, url.
 
 ```python
 title = "Taliban attacks German consulate in northern Afghan city of Mazar-i-Sharif with truck bomb"
@@ -42,4 +46,4 @@ This function extracts all of the article components: what, where, when, who, wh
 ```python
 analyzer.identify_component(article_example, 'what')
 ```
-   This line gives the 'what' component from the article as a result.
+This line returns the 'what' component from the article as a result.
