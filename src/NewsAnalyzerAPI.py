@@ -9,19 +9,21 @@ class NewsArticle:
         self.url = url
 
 class LLMConnector:
-    def __init__(self, endpoint):
+    def __init__(self, endpoint, key, model):
         # Initialize the connection to the LLM endpoint
         self.endpoint = endpoint
 
         self.client = OpenAI(
             base_url = self.endpoint,
-            api_key = "lm-studio",
+            api_key = key,
         )
+
+        self.model = model
 
     def process_text(self, text):
         # Method to interact with the LLM endpoint for text processing
         response = self.client.chat.completions.create(
-            model = "lmstudio-ai/gemma-2b-it-GGUF",
+            model = self.model,
             messages = [
                 {"role": "user", "content": text},
             ]
@@ -57,29 +59,3 @@ class NewsAnalyzer:
     # Method to identify the specified component of the news
     def identify_component(self, article, component):
         return self.llm_connector.process_text((article.text + '\n\n'+ self.event_components[component]))
-
-    # -> manter as funções abaixo ou só esta de cima?
-
-    # def identify_what(self, article):
-    #     # Method to identify the "what" component of the news
-    #     return self.llm_connector.process_text((article.text + '\n\n'+ self.event_components['what']))
-
-    # def identify_where(self, article):
-    #     # Method to identify the "where" component of the news
-    #     return self.llm_connector.process_text((article.text + '\n\n'+ self.event_components['where']))
-
-    # def identify_when(self, article):
-    #     # Method to identify the "when" component of the news
-    #     return self.llm_connector.process_text((article.text + '\n\n'+ self.event_components['when']))
-
-    # def identify_who(self, article):
-    #     # Method to identify the "who" component of the news
-    #     return self.llm_connector.process_text((article.text + '\n\n'+ self.event_components['who']))
-
-    # def identify_why(self, article):
-    #     # Method to identify the "why" component of the news
-    #     return self.llm_connector.process_text((article.text + '\n\n'+ self.event_components['why']))
-
-    # def identify_how(self, article):
-    #     # Method to identify the "how" component of the news
-    #     return self.llm_connector.process_text((article.text + '\n\n'+ self.event_components['how']))
