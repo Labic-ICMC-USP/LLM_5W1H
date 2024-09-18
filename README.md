@@ -17,7 +17,7 @@ from src.NewsAnalyzerAPI import NewsAnalyzer
 
 3. Instantiate your LLMConnector and NewsAnalyzer objects.
 ```python
-connector = LLMConnector("your_llm_endpoint")
+connector = LLMConnector("your_llm_endpoint", "your_llm_key", "your_llm_model")
 analyzer = NewsAnalyzer(connector)
 ```
 
