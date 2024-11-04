@@ -31,7 +31,7 @@ class LLMConnector:
         return response.choices[0].message.content
 
 class NewsAnalyzer:
-    language = 'English'
+    language = 'Portuguese'
     event_components = {}
     event_components['what'] = 'What events occur in the text? List and enumerate (in '+language+'):'
     event_components['where'] = 'Where (locations and places) did the events described in the text occur? Output format is [country,state,city]. List and enumerate (in '+language+')::'
@@ -43,19 +43,39 @@ class NewsAnalyzer:
     def __init__(self, llm_connector):
         self.llm_connector = llm_connector
 
-    # Method to process and analyze an article
-    def process_article(self, article):
-        for component in self.event_components:
-            print(component)
-            print(self.llm_connector.process_text(article.text + "\n\n" + self.event_components[component]))
-            print("--------------\n\n")
+    # # Method to process and analyze an article
+    # def process_article(self, article):
+    #     for component in self.event_components:
+    #         print(component)
+    #         print(self.llm_connector.process_text(article.text + "\n\n" + self.event_components[component]))
+    #         print("--------------\n\n")
 
-    # Method to process a list of articles
-    def process_articles(self, news_list):
-        for article in news_list:
-          print(f"Article title: {article.title}\n")
-          self.process_article(article)
+    # # Method to process a list of articles
+    # def process_articles(self, news_list):
+    #     for article in news_list:
+    #       print(f"Article title: {article.title}\n")
+    #       self.process_article(article)
 
-    # Method to identify the specified component of the news
-    def identify_component(self, article, component):
-        return self.llm_connector.process_text((article.text + '\n\n'+ self.event_components[component]))
+    # Method to identify the specified component from the text
+    def identify_component(self, text, component):
+        return self.llm_connector.process_text((text + '\n\n' + self.event_components[component]))
+    
+    # Method to identify all components from the text
+    def extract_components(self, text):
+        what_pred = self.identify_component(text, "what")
+        where_pred = self.identify_component(text, "where")
+        when_pred = self.identify_component(text, "when")
+        who_pred = self.identify_component(text, "who")
+        why_pred = self.identify_component(text, "why")
+        how_pred = self.identify_component(text, "how")
+
+        components = {
+            "what_pred": what_pred,
+            "where_pred": where_pred,
+            "when_pred": when_pred,
+            "who_pred": who_pred,
+            "why_pred": why_pred,
+            "how_pred": how_pred,
+        }
+
+        return components
