@@ -22,3 +22,4 @@ for text in data_list["text"]:
 components_df = pd.DataFrame(components_list)
 df = pd.concat([df, components_df], axis=1)
 df.to_excel("dengue_hazzards_pred.xlsx", index=False)
+print("Success")
