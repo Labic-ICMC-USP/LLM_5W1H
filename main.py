@@ -2,6 +2,7 @@ import os
 import pandas as pd
 from src.NewsAnalyzerAPI import LLMConnector
 from src.NewsAnalyzerAPI import NewsAnalyzer
+from tqdm import tqdm
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -14,7 +15,7 @@ analyzer = NewsAnalyzer(con)
 df = pd.read_excel("dengue_hazzards_news.xlsx")
 data_list = df.to_dict(orient="list")
 components_list = []
-for text in data_list["text"]:
+for text in tqdm(data_list["text"]):
     components = analyzer.extract_components(text)
     components_list.append(components)
 
