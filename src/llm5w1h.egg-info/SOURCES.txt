@@ -1,0 +1,9 @@
+LICENSE
+README.md
+pyproject.toml
+src/llm5w1h/__init__.py
+src/llm5w1h/news_analyzer.py
+src/llm5w1h.egg-info/PKG-INFO
+src/llm5w1h.egg-info/SOURCES.txt
+src/llm5w1h.egg-info/dependency_links.txt
+src/llm5w1h.egg-info/top_level.txt
