@@ -1,27 +1,27 @@
 # LLM-5W1H
-This project is a LLM-based System for extracting main events from news articles.
+This project is an LLM-based System for extracting main events from news articles.
 
-## Step-by-Step Tutorial on how to use News Analyzer API
-1. Ensure you have OpenAI's Python library installed by running the following command in the Python shell.
-        
-        pip install openai 
+## Step-by-Step Tutorial on how to use LLM-5W1H API
+### 1. Install the required libraries by running the following commands in your command line:
 
-2. Import News Analyzer API.
-
-```python
-from src.NewsAnalyzerAPI import NewsArticle
-from src.NewsAnalyzerAPI import LLMConnector
-from src.NewsAnalyzerAPI import NewsAnalyzer
+```
+pip install openai
+pip install llm5w1h
 ```
 
+### 2. Import LLM-5W1H API classes.
 
-3. Instantiate your LLMConnector and NewsAnalyzer objects.
 ```python
-connector = LLMConnector("your_llm_endpoint", "your_llm_key", "your_llm_model")
-analyzer = NewsAnalyzer(connector)
+from llm5w1h import NewsArticle, NewsAnalyzer
 ```
 
-4. Give an example article to the analyzer, with the following parameters: title, description, text, date, url.
+### 3. Instantiate your NewsAnalyzer object.
+```python
+analyzer = NewsAnalyzer("your_llm_endpoint", "your_llm_key", "your_llm_model")
+```
+The first parameter (`"your_llm_endpoint"`) refers to the used LLM model's endpoint, necessary for the `NewsAnalyzer` to establish the connection. The second one (`"your_llm_key"`) is the key to be allowed to access the model. The last one (`"your_llm_model"`) is the name of the model that is going to be used, such as `"llama3.1"`, `"gemma2"`, etc.
+
+### 4. Give an example article to the analyzer, with the following parameters: *title, description, text, date, url*.
 
 ```python
 title = "Taliban attacks German consulate in northern Afghan city of Mazar-i-Sharif with truck bomb"
@@ -37,13 +37,15 @@ url = "http://www.telegraph.co.uk/news/2016/11/10/taliban-attack-german-consulat
 article_example = NewsArticle(title, description, text, date, url)
 ```
 
-4. Extract the article components by calling process_article(article) function (or process_articles(articles) for a list of articles) in the created NewsAnalyzer object:
+### 5. Extract the article components by calling process_article(article) function in the created NewsAnalyzer object:
 ```python            
 analyzer.process_article(article_example)
 ```
-This function extracts all of the article components: what, where, when, who, why, how (5W1H). It is also possible to extract each of them separately by calling the function identify_component(article, component) in the same NewsAnalyzer object, where the 'component' parameter must be one of the components from 5W1H. For example:
+This function extracts all of the article components: *what, where, when, who, why, how* **(5W1H)**. It is also possible to extract each of them separately using `identify_component(component)` in the same `NewsAnalyzer` object, where the '`component`' parameter must be one of the components from 5W1H.
+
+For example, the following line returns the 'What' component from the article as a result:
 
 ```python
-analyzer.identify_component(article_example, 'what')
+analyzer.identify_component('What')
+-> 'Truck bombing at the German consulate in Mazar-i-Sharif city, Afghanistan'
 ```
-This line returns the 'what' component from the article as a result.

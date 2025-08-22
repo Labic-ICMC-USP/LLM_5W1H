@@ -1,6 +1,6 @@
-Metadata-Version: 2.2
+Metadata-Version: 2.4
 Name: llm5w1h
-Version: 0.0.1
+Version: 0.0.2
 Summary: LLM-based system for extracting main events from news articles
 Author-email: Lucas Vizzotto de Castro <lucasvizzottodecastro@gmail.com>
 License: MIT License
@@ -32,6 +32,7 @@ Classifier: Operating System :: OS Independent
 Requires-Python: >=3.8
 Description-Content-Type: text/markdown
 License-File: LICENSE
+Dynamic: license-file
 
 # LLM-5W1H
 This project is a LLM-based System for extracting main events from news articles.

@@ -94,10 +94,9 @@ class LLMConnector:
           r = llm_json_response
           r = r.replace('```json', '')
           r = r.replace('```', '')
-          json_obj = json.loads(r) # parses the json object into a dictionary
+          json_obj = json.loads(r)
           self.llm_json_response = json_obj
         except Exception as error:
-          # handles the exception
           print("An exception occurred:", error)
           self.llm_json_response = None
 
@@ -106,7 +105,6 @@ class LLMConnector:
 
 # Class for analyzing news articles and extracting its components
 class NewsAnalyzer:
-
     def __init__(self, endpoint, key, model, num_ctx=10240, temperature=0):
         self.endpoint = endpoint
         self.key = key
@@ -126,7 +124,7 @@ class NewsAnalyzer:
     def identify_component(self, component):
         return self.llm_connector.llm_json_response[component]
 
-    # Method to get all the previously extracted component
+    # Method to get all the previously extracted components
     def extract_components(self):
         what_pred = self.identify_component("What")
         where_pred = self.identify_component("Where")
